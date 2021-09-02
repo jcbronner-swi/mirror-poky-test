@@ -170,6 +170,8 @@ do_rust_create_wrappers () {
 	create_wrapper "${RUST_TARGET_AR}" "${WRAPPER_TARGET_AR}"
 
 	# Need to filter out LD_LIBRARY_PATH from the linker without using shell
+	mv ${RUST_BUILD_CCLD} ${RUST_BUILD_CCLD}.real
+	${BUILD_CC} ${COREBASE}/meta/files/rust-ccld-wrapper.c -o ${RUST_BUILD_CCLD}
 	mv ${RUST_TARGET_CCLD} ${RUST_TARGET_CCLD}.real
 	${BUILD_CC} ${COREBASE}/meta/files/rust-ccld-wrapper.c -o ${RUST_TARGET_CCLD}
 }
